@@ -36,6 +36,7 @@ print(x)
 x = tf.zeros((3,3))
 print(x)
 
+# diagonal has a value of 1 rest all values are zero, eye()-takes only one value as argument 
 x = tf.eye(3)
 print(x)
 

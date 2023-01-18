@@ -16,11 +16,11 @@ print(x_train.shape, y_train.shape)
 # normalize: 0,255 -> 0,1
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
-# model
+# model  Dense layer is the fully connected layer in keras api
 model = keras.models.Sequential([
     keras.layers.Flatten(input_shape=(28,28)),
     keras.layers.Dense(128, activation='relu'),
-    keras.layers.Dense(10),
+    keras.layers.Dense(10),                        #specify the number of classes 
 ])
 
 print(model.summary())
@@ -31,8 +31,8 @@ print(model.summary())
 #model.add(keras.layers.Dense(128, activation='relu'))
 #model.add(keras.layers.Dense(10))
 
-# loss and optimizer
-loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+# loss and optimizer, from_logits=True --> haven't used softmax layer earlier 
+loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)    #when y = 0/1/2... (integer class label), when one hot encoding then use CategoricalCrossentropy
 optim = keras.optimizers.Adam(lr=0.001)
 metrics = ["accuracy"]
 

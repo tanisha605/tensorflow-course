@@ -40,12 +40,15 @@ print(x)
 x = tf.eye(3)
 print(x)
 
+#random values from normal distribution with provided mean and std deviation 
 x = tf.random.normal((3,3), mean=0, stddev=1)
 print(x)
 
+#random values from uniform distribution all values b/w 0 and 1
 x = tf.random.uniform((3,3), minval=0, maxval=1)
 print(x)
 
+#values b/w 0 and 9, by default its data type is int
 x = tf.range(10)
 print(x)
 
@@ -53,12 +56,12 @@ print(x)
 x = tf.cast(x, dtype=tf.float32)
 print(x)
 
-# 3. operations, elementwise
+# 3. operations, elementwise (all operations are executed elementwise)
 x = tf.constant([1,2,3])
 y = tf.constant([4,5,6])
 
-z = tf.add(x,y)
-z = x + y
+z = tf.add(x,y)  # result = [5,7,9]
+z = x + y   # equivalent to z = tf.add(x,y)
 print(z)
 
 z = tf.subtract(x,y)
@@ -73,28 +76,29 @@ z = tf.multiply(x,y)
 z = x * y
 print(z)
 
-# dot product
+# dot product   
 z = tf.tensordot(x,y, axes=1)
-print(z)
+print(z)   # result = 1*4 + 2*5 + 3*6 = 32
 
 # elementwise exponentiate
 z = x ** 3
-print(z)
+print(z) # result = [1,8,27]
 
 # matrix multiplication (shapes must match: number of columns A = number of rows B)
 x = tf.random.normal((2,2)) # 2,3
 y = tf.random.normal((3,4)) # 3,4
 
 z = tf.matmul(x,y)
-z = x @ y
+z = x @ y # equivalent to z = tf.matmul(x,y)
 print(z)
 
 # 4. indexing, slicing
 x = tf.constant([[1,2,3,4],[5,6,7,8]])
-print(x[0])
-print(x[:, 0]) # all rows, column 0
-print(x[1, :]) # row 1, all columns
-print(x[1,1]) # element at 1, 1
+print(x[0])  # [1,2,3,4]
+print(x[:, 0]) # all rows, column 0  [1,5]
+print(x[1, :]) # row 1, all columns  [5,6,7,8]
+print(x[1,1]) # element at 1, 1   6
+print(x[0, 1:3])  #row 0, columns 1 and 2 (column 3 is not included)  [2,3]
 
 # 5. reshape
 x = tf.random.normal((2,3))
@@ -102,14 +106,14 @@ print(x)
 x = tf.reshape(x, (3,2))
 print(x)
 
-x = tf.reshape(x, (-1,2))
-print(x)
+x = tf.reshape(x, (-1,2))  # won't reshape
+print(x)  
 
-x = tf.reshape(x, (6))
+x = tf.reshape(x, (6))  # shape = (6,)
 print(x)
 
 # 6. numpy
-x = x.numpy()
+x = x.numpy() # to convert into numpy array 
 print(type(x))
 
 x = tf.convert_to_tensor(x)
@@ -118,8 +122,8 @@ print(type(x))
 # without building graphs
 
 # string tensor
-x = tf.constant("Patrick")
-print(x)
+x = tf.constant("Patrick") # data type is string
+print(x)  
 
 x = tf.constant(["Patrick", "Max", "Mary"])
 print(x)

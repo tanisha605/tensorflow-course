@@ -9,7 +9,7 @@ mnist = keras.datasets.mnist
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
-# 28, 28 -> treat image as sequence
+# 28, 28 -> treat image as sequence   , there are 28 timesteps and each timestep has 28 features
 # input_size=28
 # seq_length=28
 
@@ -31,7 +31,7 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 model = keras.models.Sequential()
 model.add(keras.Input(shape=(28,28))) # seq_length, input_size
 #model.add(layers.SimpleRNN(128, return_sequences=True, activation='relu')) # N, 28(seq_length), 128 useful when we want to stack multiple RNN's 
-model.add(layers.LSTM(128, return_sequences=False, activation='relu')) # N, 128
+model.add(layers.LSTM(128, return_sequences=False, activation='relu')) # N, 128   LSTM and GRU are popular RNN's 
 model.add(layers.Dense(10))
 print(model.summary())
 

@@ -30,7 +30,7 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 # model
 model = keras.models.Sequential()
 model.add(keras.Input(shape=(28,28))) # seq_length, input_size
-#model.add(layers.SimpleRNN(128, return_sequences=True, activation='relu')) # N, 28, 128
+#model.add(layers.SimpleRNN(128, return_sequences=True, activation='relu')) # N, 28(seq_length), 128 useful when we want to stack multiple RNN's 
 model.add(layers.LSTM(128, return_sequences=False, activation='relu')) # N, 128
 model.add(layers.Dense(10))
 print(model.summary())
